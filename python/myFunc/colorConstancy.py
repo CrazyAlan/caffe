@@ -55,7 +55,7 @@ def deMultiangle2(approx, actual):
             if tt<-1.0001 or tt> 1.0001:
                 pass
             else:
-                tt = mycliplims(tt,-1.0,1.0)
+                tt = mycliplims(tt,-0.9999,0.9999)
                 arccos_tt = np.arccos(tt)
 
                 f = np.sum(actual[i,:]*approx[i,:])
