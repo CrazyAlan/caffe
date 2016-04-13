@@ -22,7 +22,7 @@ caffe.set_device(0)
 caffe.set_mode_gpu()
 
 solver = caffe.SGDSolver('models/color_constancy/gehler_482_solver.prototxt')
-solver.net.copy_from('models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel')
+solver.net.copy_from('models/color_constancy/result/gehler_482_3000_iters.caffemodel')
 
 import tempfile
 
@@ -36,7 +36,7 @@ def run_solver(solver, niter, disp_interval):
         if it % disp_interval == 0 or it + 1 == niter:
             loss_disp = 'loss: %.3f'%loss[it]
             print '%3d) %s Angular Erro %.3f' % (it, loss_disp, acc[it])     
-            print(solver.net.blobs['fc8_flickr'].data[1], solver.net.blobs['illu'].data[1])
+            print(solver.net.blobs['fc9'].data[1], solver.net.blobs['illu'].data[1])
     # Save the learned weights from both nets.
     weight_dir = tempfile.mkdtemp()
     name = 'firstTry'
@@ -52,5 +52,5 @@ def run_solver(solver, niter, disp_interval):
 loss_1, acc_1, weights_1 = run_solver(solver, niters,10)
 
 
-solver.net.save('models/color_constancy/result/gehler_482_3000_iters.caffemodel')
-np.save('models/color_constancy/result/loss_1.npy', loss_1)
+solver.net.save('models/color_constancy/result/gehler_482_with_FC9_3000_iters.caffemodel')
+np.save('models/color_constancy/result/loss_1_with_FC9.npy', loss_1)

@@ -357,10 +357,37 @@ layer {
 	}
 }
 layer {
-	name: "fc8_flickr"
+	name: "fc8_19"
 	type: "InnerProduct"
 	bottom: "fc7"
-	top: "fc8_flickr"
+	top: "fc8_19"
+	# lr_mult is set to higher than for other layers, because this layer is starting from random while the others are already trained
+	param {
+		lr_mult: 1
+		decay_mult: 1
+	}
+	param {
+		lr_mult: 1
+		decay_mult: 0
+	}
+	inner_product_param {
+		num_output: 19 
+		weight_filler {
+			type: "gaussian"
+			std: 0.01
+		}
+		bias_filler {
+			type: "constant"
+			value: 0
+		}
+	}
+}
+
+layer {
+	name: "fc9"
+	type: "InnerProduct"
+	bottom: "fc8_19"
+	top: "fc9"
 	# lr_mult is set to higher than for other layers, because this layer is starting from random while the others are already trained
 	param {
 		lr_mult: 1
@@ -387,12 +414,11 @@ layer {
 
 
 
-
 layer {
 	type: 'Python'
 	name: 'loss'
 	top: 'loss'
-	bottom: "fc8_flickr"
+	bottom: "fc9"
 	bottom: "illu"
 	python_param {
 		# the module name -- usually the filename -- that needs to be in $PYTHONPATH
@@ -407,7 +433,7 @@ layer {
 layer {
 	name: "accuracy"
 	type: "EuclideanLoss"
-	bottom: "fc8_flickr"
+	bottom: "fc9"
 	bottom: "illu"
 	top: "accuracy"
 	loss_weight: 0 
