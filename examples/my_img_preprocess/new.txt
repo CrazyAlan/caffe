@@ -1,0 +1,10 @@
+import caffe % suppose caffe is already in the path of Python
+import numpy as np
+import sys
+
+blob = caffe.proto.caffe_pb2.BlobProto()
+data = open( 'data/ilsvrc12/imagenet_mean.binaryproto' , 'rb' ).read()
+blob.ParseFromString(data)
+arr = np.array( caffe.io.blobproto_to_array(blob) )
+arr.shape % check the shape of arr
+https://github.com/BVLC/caffe/issues/2780#issuecomment-123385714

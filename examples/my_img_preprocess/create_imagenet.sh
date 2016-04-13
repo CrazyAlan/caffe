@@ -34,24 +34,24 @@ if [ ! -d "$VAL_DATA_ROOT" ]; then
   exit 1
 fi
 
-# echo "Creating train lmdb..."
+echo "Creating train lmdb..."
 
-# GLOG_logtostderr=1 $TOOLS/convert_imageset \
-#     --resize_height=$RESIZE_HEIGHT \
-#     --resize_width=$RESIZE_WIDTH \
-#     --shuffle \
-#     $TRAIN_DATA_ROOT \
-#     $DATA/train.txt \
-#     $EXAMPLE/geler_482_lmdb
+GLOG_logtostderr=1 $TOOLS/convert_imageset \
+    --resize_height=$RESIZE_HEIGHT \
+    --resize_width=$RESIZE_WIDTH \
+    --shuffle=false \
+    $TRAIN_DATA_ROOT \
+    $DATA/train.txt \
+    $EXAMPLE/geler_train_482_lmdb
 
 echo "Creating val lmdb..."
 
 GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_height=$RESIZE_HEIGHT \
     --resize_width=$RESIZE_WIDTH \
-    --shuffle \
+    --shuffle=false \
     $VAL_DATA_ROOT \
     $DATA/val.txt \
-    $EXAMPLE/geler_482_lmdb
+    $EXAMPLE/geler_val_482_lmdb
 
 echo "Done."
