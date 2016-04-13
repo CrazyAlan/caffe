@@ -1,13 +1,13 @@
 net: "models/color_constancy/train_val_gehler_482.prototxt"
-test_iter: 100
-test_interval: 1000
+test_iter: 10
+test_interval: 50
 # lr for fine-tuning should be lower than when starting from scratch
 base_lr: 0.00001
 lr_policy: "step"
 gamma: 0.5
 # stepsize should also be lower, as we're closer to being done
 stepsize: 500
-display: 20
+display: 200
 max_iter: 100000
 momentum: 0.9
 weight_decay: 0.0005

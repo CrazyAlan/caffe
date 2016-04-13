@@ -2,9 +2,9 @@ name: "FlickrStyleCaffeNet"
 #force_backward: true
 layer {
 	name: "data"
-	type: "Data"
+	type: "ImageData"
 	top: "data"
-	#top: "label"
+	top: "label"
 	include {
 		phase: TRAIN
 	}
@@ -14,18 +14,19 @@ layer {
 		mean_file: "examples/my_img_preprocess/geler_482_mean.binaryproto"
 	}
 
-	data_param {
-	source: "examples/my_img_preprocess/geler_train_482_lmdb"
-		batch_size: 50
-		backend: LMDB
-	}
+	image_data_param {
+    source: "/home/xca64/remote/data/train_gehler_482.txt"
+    batch_size: 50
+    new_height : 256
+    new_width : 256
+  }
 	
 }
 	layer {
 		name: "data"
-	type: "Data"
+	type: "ImageData"
 	top: "data"
-	#top: "label"
+	top: "label"
 	include {
 		phase: TEST
 	}
@@ -35,10 +36,24 @@ layer {
 		mean_file: "examples/my_img_preprocess/geler_482_mean.binaryproto"
 	}
 
-	data_param {
-	source: "examples/my_img_preprocess/geler_val_482_lmdb"
-		batch_size: 50
-		backend: LMDB
+	image_data_param {
+    source: "/home/xca64/remote/data/val_gehler_482.txt"
+    batch_size: 50
+       new_height : 256
+    new_width : 256
+  }
+}
+
+layer {
+	name: "illu_data"
+	type: "HDF5Data"
+	top : "illu"
+	include {
+		phase: TRAIN
+	}
+	hdf5_data_param { 
+			 source: "/home/xca64/remote/data/illu_gehler_482.txt" 
+			 batch_size: 50
 	}
 }
 
@@ -46,6 +61,9 @@ layer {
 	name: "illu_data"
 	type: "HDF5Data"
 	top : "illu"
+	include {
+		phase: TEST
+	}
 	hdf5_data_param { 
 			 source: "/home/xca64/remote/data/illu_gehler_482.txt" 
 			 batch_size: 50
@@ -394,6 +412,9 @@ layer {
 	top: 'loss'
 	bottom: "fc8_flickr"
 	bottom: "illu"
+	include {
+		phase: TRAIN
+	}
 	python_param {
 		# the module name -- usually the filename -- that needs to be in $PYTHONPATH
 		module: 'pyloss'
@@ -405,11 +426,18 @@ layer {
 }
 
 layer {
-	name: "accuracy"
-	type: "EuclideanLoss"
+	type: 'Python'
+	name: 'accuracy'
+	top: 'accuracy'
 	bottom: "fc8_flickr"
 	bottom: "illu"
-	top: "accuracy"
+	python_param {
+		# the module name -- usually the filename -- that needs to be in $PYTHONPATH
+		module: 'pyloss'
+		# the layer name -- the class name in the module
+		layer: 'AngularLossLayer'
+	}
+	# set loss weight so Caffe knows this is a loss layer
 	loss_weight: 0 
 	include {
 		phase: TEST
