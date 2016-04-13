@@ -2,7 +2,7 @@ name: "FlickrStyleCaffeNet"
 #force_backward: true
 layer {
 	name: "data"
-	type: "ImageData"
+	type: "Data"
 	top: "data"
 	#top: "label"
 	include {
