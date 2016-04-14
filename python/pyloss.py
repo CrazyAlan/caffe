@@ -71,3 +71,19 @@ class AngularLossLayer(caffe.Layer):
         #     else:
         #         sign = -1
         #     bottom[i].diff[...] = sign * self.diff / bottom[i].num
+
+
+class SilenceLayer(caffe.Layer):
+
+    def setup(self, bottom, top):
+        # check input pair
+        pass
+
+    def reshape(self, bottom, top):
+        pass
+
+    def forward(self, bottom, top):
+        pass
+
+    def backward(self, top, propagate_down, bottom):
+        pass

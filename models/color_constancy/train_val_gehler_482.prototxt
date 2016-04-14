@@ -443,3 +443,17 @@ layer {
 		phase: TEST
 	}
 }
+
+
+
+layer {
+	type: 'Python'
+	name: 'silentLayer'
+	bottom: 'label'
+	python_param {
+		# the module name -- usually the filename -- that needs to be in $PYTHONPATH
+		module: 'pyloss'
+		# the layer name -- the class name in the module
+		layer: 'SilenceLayer'
+	}
+}

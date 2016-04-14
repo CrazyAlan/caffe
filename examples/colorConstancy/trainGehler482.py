@@ -35,7 +35,7 @@ def run_solver(solver, niter, disp_interval, test_interval):
         acc[it] = 0#(solver.net.blobs['loss_ang'].data.copy())
         if it % disp_interval == 0 or it + 1 == niter:
             loss_disp = 'loss: %.3f'%loss[it]
-            print '%3d) %s Angular Erro %.3f' % (it, loss_disp, acc[it])     
+            #print '%3d) %s Angular Erro %.3f' % (it, loss_disp, acc[it])     
             #print(solver.net.blobs['fc8_flickr'].data[1], solver.net.blobs['illu'].data[1])
         if it % test_interval == 0:
             print "%3d) test loss is %.3f"% (it ,solver.test_nets[0].blobs['accuracy'].data.copy())
