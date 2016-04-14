@@ -11,6 +11,7 @@
 import os
 os.chdir('../../')
 import sys
+import time
 sys.path.insert(0, './python')
 sys.path.append('/local-scratch/xca64/tmp/caffe-master/python/myFunc')
 import caffe
@@ -37,9 +38,9 @@ def run_solver(solver, niter, disp_interval, test_interval):
             loss_disp = 'loss: %.3f'%loss[it]
             #print '%3d) %s Angular Erro %.3f' % (it, loss_disp, acc[it])     
             #print(solver.net.blobs['fc8_flickr'].data[1], solver.net.blobs['illu'].data[1])
-        if it % test_interval == 0:
-            print "%3d) test loss is %.3f"% (it ,solver.test_nets[0].blobs['accuracy'].data.copy())
-            test_loss[it//test_interval] = solver.test_nets[0].blobs['accuracy'].data.copy()
+        # if it % test_interval == 0:
+        #     print "%3d) test loss is %.3f"% (it ,solver.test_nets[0].blobs['accuracy'].data.copy())
+        #     test_loss[it//test_interval] = solver.test_nets[0].blobs['accuracy'].data.copy()
     # Save the learned weights from both nets.
     weight_dir = tempfile.mkdtemp()
     name = 'firstTry'
@@ -53,9 +54,9 @@ def run_solver(solver, niter, disp_interval, test_interval):
 
 
 niters = 3000
-loss_1, test_loss, acc_1, weights_1 = run_solver(solver, niters,20, 50)
+loss_1, test_loss, acc_1, weights_1 = run_solver(solver, niters,20, 5000)
 
-print loss_1, test_loss
+
 
 
 #solver.net.save('models/color_constancy/result/gehler_482_3000_iters.caffemodel')

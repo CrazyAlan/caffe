@@ -15,7 +15,7 @@ layer {
 	}
 
 	image_data_param {
-    source: "/home/xca64/remote/data/train_gehler_482.txt"
+    source: "/home/xca64/remote/data/train_src.txt"
     batch_size: 50
     new_height : 256
     new_width : 256
