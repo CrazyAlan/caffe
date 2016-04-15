@@ -11,7 +11,7 @@ layer {
 		transform_param {
 		mirror: true
 		crop_size: 227
-		mean_file: "examples/my_img_preprocess/geler_482_mean.binaryproto"
+		mean_file: "examples/my_img_preprocess/shi_funt_mean.binaryproto"
 	}
 
 	image_data_param {
@@ -33,7 +33,7 @@ layer {
 		transform_param {
 		mirror: true
 		crop_size: 227
-		mean_file: "examples/my_img_preprocess/geler_482_mean.binaryproto"
+		mean_file: "examples/my_img_preprocess/shi_funt_mean.binaryproto"
 	}
 
 	image_data_param {
