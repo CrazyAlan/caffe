@@ -1,4 +1,4 @@
-net: "models/color_constancy/train_val_gehler_482.prototxt"
+net: "models/color_constancy/train_val_gehler_482_validation.prototxt"
 test_iter: 10
 test_interval: 5000
 # lr for fine-tuning should be lower than when starting from scratch
