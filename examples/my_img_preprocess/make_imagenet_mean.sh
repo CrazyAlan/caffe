@@ -7,6 +7,6 @@ DATA=examples/my_img_preprocess
 TOOLS=build/tools
 
 $TOOLS/compute_image_mean $EXAMPLE/shi_funt_train_lmdb \
-  $DATA/shi_funt_mean.binaryproto
+  $DATA/grayBall_mean.binaryproto
 
 echo "Done."
