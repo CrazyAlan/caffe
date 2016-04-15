@@ -6,7 +6,7 @@ EXAMPLE=examples/my_img_preprocess
 DATA=examples/my_img_preprocess
 TOOLS=build/tools
 
-$TOOLS/compute_image_mean $EXAMPLE/geler_train_482_lmdb \
-  $DATA/geler_482_mean.binaryproto
+$TOOLS/compute_image_mean $EXAMPLE/shi_funt_train_lmdb \
+  $DATA/shi_funt_mean.binaryproto
 
 echo "Done."

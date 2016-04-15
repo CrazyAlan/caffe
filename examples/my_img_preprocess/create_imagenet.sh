@@ -6,8 +6,8 @@ EXAMPLE=examples/my_img_preprocess
 DATA=examples/my_img_preprocess
 TOOLS=build/tools
 
-TRAIN_DATA_ROOT=/home/xca64/remote/GitHub/colorP/dataSet/geler/source/
-VAL_DATA_ROOT=/home/xca64/remote/GitHub/colorP/dataSet/geler/source/
+TRAIN_DATA_ROOT=/local\-scratch/xca64/shi_funt_new/png_file/
+VAL_DATA_ROOT=/local\-scratch/xca64/shi_funt_new/png_file/
 
 # Set RESIZE=true to resize the images to 256x256. Leave as false if images have
 # already been resized using another tool.
@@ -42,7 +42,7 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --shuffle=false \
     $TRAIN_DATA_ROOT \
     $DATA/train.txt \
-    $EXAMPLE/geler_train_482_lmdb
+    $EXAMPLE/shi_funt_train_lmdb
 
 echo "Creating val lmdb..."
 
@@ -52,6 +52,6 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --shuffle=false \
     $VAL_DATA_ROOT \
     $DATA/val.txt \
-    $EXAMPLE/geler_val_482_lmdb
+    $EXAMPLE/shi_funt_val_lmdb
 
 echo "Done."
