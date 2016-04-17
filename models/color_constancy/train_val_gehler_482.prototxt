@@ -381,14 +381,14 @@ layer {
 	# lr_mult is set to higher than for other layers, because this layer is starting from random while the others are already trained
 	param {
 		lr_mult: 10
-		decay_mult: 10
+		decay_mult: 1
 	}
 	param {
-		lr_mult: 2
+		lr_mult: 20
 		decay_mult: 0
 	}
 	inner_product_param {
-		num_output: 255 
+		num_output: 150 
 		weight_filler {
 			type: "gaussian"
 			std: 0.01
@@ -409,14 +409,14 @@ layer {
 	# lr_mult is set to higher than for other layers, because this layer is starting from random while the others are already trained
 	param {
 		lr_mult: 10
-		decay_mult: 10
+		decay_mult: 1
 	}
 	param {
-		lr_mult: 2
+		lr_mult: 20
 		decay_mult: 0
 	}
 	inner_product_param {
-		num_output: 255 
+		num_output: 150 
 		weight_filler {
 			type: "gaussian"
 			std: 0.01
@@ -436,14 +436,14 @@ layer {
 	# lr_mult is set to higher than for other layers, because this layer is starting from random while the others are already trained
 	param {
 		lr_mult: 10
-		decay_mult: 10
+		decay_mult: 1
 	}
 	param {
-		lr_mult: 2
+		lr_mult: 20
 		decay_mult: 0
 	}
 	inner_product_param {
-		num_output: 255 
+		num_output: 150 
 		weight_filler {
 			type: "gaussian"
 			std: 0.01
@@ -470,7 +470,7 @@ layer {
 	bottom : "fc8_G"
 	bottom : "illu_G"
 	top : "loss_G"
-	loss_weight : 1
+	loss_weight : 0
 }
 
 layer {
@@ -479,7 +479,7 @@ layer {
 	bottom : "fc8_B"
 	bottom : "illu_B"
 	top : "loss_B"
-	loss_weight : 1
+	loss_weight : 0
 }
 
 

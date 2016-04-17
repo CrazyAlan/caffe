@@ -93,8 +93,7 @@ class AngularAccLayer(caffe.Layer):
         approx = (np.array([a0, a1, a2]).transpose())
         actual = (np.array([g0, g1, g2]).transpose()) 
         #print bottom[0].num
-        print approx
-
+        #print (np.max(approx[:,1,1]))
         #top[0].data[...] = np.sum(multiangle(approx, actual)) / bottom[0].num/1.
 
     def backward(self, top, propagate_down, bottom):
